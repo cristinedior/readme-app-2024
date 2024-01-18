@@ -1,5 +1,9 @@
 // TODO: function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
+const inquirer = require('inquirer');
+const fs = require('fs');
+
+
 function renderLicenseBadge(license) {
   if(license) {
     return `![GitHub license](https://img.shields.io/badge/license-${license}-blue.svg)`
@@ -67,6 +71,68 @@ ${data.tests}
 For any questions, please contact [${data.username}](https://github.com/${data.username}) or email at ${data.email}.
 
 `;
+}
+// generate inquirer prompts to allow for above markdown data to be input by user
+const prompts = [
+  {
+    type: 'input',
+    name: 'title',
+    message: 'Enter the project title:',
+  },
+  {
+    type: 'input',
+    name: 'description',
+    message: 'Enter a description of the project:',
+  },
+  {
+    type: 'input',
+    name: 'installation',
+    message: 'Enter installation instructions:',
+  },
+  {
+    type: 'input',
+    name: 'usage',
+    message: 'Enter usage instructions:',
+  },
+  {
+    type: 'list',
+    name: 'license',
+    message: 'Choose a license for your project:',
+    choices: ['MIT', 'Apache', 'GPL', 'BSD', 'None'],
+  },
+  {
+    type: 'input',
+    name: 'contributing',
+    message: 'Enter contribution guidelines:',
+  },
+  {
+    type: 'input',
+    name: 'tests',
+    message: 'Enter test instructions:',
+  },
+  {
+    type: 'input',
+    name: 'username',
+    message: 'Enter your GitHub username:',
+  },
+  {
+    type: 'input',
+    name: 'email',
+    message: 'Enter your email address:',
+  },
+];
+// function to write README file
+function writeToFile(fileName, data) {
+  fs.writeFile(fileName, data, (err) =>
+    err ? console.error(err) : console.log('Success!')
+  );
+}
+// function to initialize program
+function init() {
+  inquirer.prompt(prompts).then((data) => {
+    const markdown = generateMarkdown(data);
+    writeToFile('README.md', markdown);
+  });
 }
 
 module.exports = generateMarkdown;
