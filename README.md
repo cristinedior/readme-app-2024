@@ -33,7 +33,8 @@ THEN I am taken to the corresponding section of the README
 ## Screenshot of VSCode README process and VIDEO
 
 Video of README.md generator:
-![E3E4CE0C-7364-4627-B41D-CED54BD66BEA_1_102_o](https://github.com/cristinedior/readme-app-2024/assets/148567509/a13912c2-029b-4fa3-88dc-dbf4bc82b098)
+
+https://drive.google.com/file/d/16sefKUyxmR5K8xGBufudztJbPWTopCRh/view?usp=sharing
 
 Screenshot VSCode Terminal: 
 
